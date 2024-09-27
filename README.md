@@ -157,12 +157,12 @@ Links
 Screenshots
 
 Landing Page of HealthHaven
-![Landing Page](public/images/Landing%20Page.jpg)
+![Landing Page](public/images/Landing%20Page.png)
 
 Login Page of HealthHaven
-![Login Page](public/images/Login%20Page.jpg)
+![Login Page](public/images/Login%20Page.png)
 
 Home Page of HealthHaven
-![Home Page](public/images/Home%20Page.jpg)
+![Home Page](public/images/Home%20Page.png)
 
 We hope you enjoy exploring HealthHaven and contributing to a healthier, more connected world!
