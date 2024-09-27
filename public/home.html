@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HealthHaven Feed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="hamburger-menu">
+        <i class="material-icons">menu</i>
+    </div>
+    
+    <div class="sidebar" id="sidebar">
+        <a href="home.html"><i class="material-icons" onclick="refreshPage()">home</i> Home</a>
+        <a href="profile.html"><i class="material-icons">account_circle</i> Profile</a>
+        <a href="settings.html"><i class="material-icons">settings</i> Settings</a>
+    </div>
+    
+    <div id="container-main">
+        <div id="title">
+            <i class="material-icons">health_and_safety</i> HealthHaven Feed
+        </div>
+        
+        <div class="post-creation-form">
+            <textarea id="post-content" placeholder="What's happening?"></textarea>
+            <div class="file-upload">
+                <label for="image-upload" class="upload-label">Upload Image</label>
+                <input type="file" id="image-upload" accept="image/*">
+            </div>
+            <div class="file-upload">
+                <label for="video-upload" class="upload-label">Upload Video</label>
+                <input type="file" id="video-upload" accept="video/*">
+            </div>
+            <button id="submit-post">Post</button>
+        </div>
+        
+        <ul id="post-list" class="post-list">
+            <!-- Post items will be dynamically generated here -->
+        </ul>
+    </div>
+    
+    <script src="js/feed.js"></script>
+</body>
+</html>
