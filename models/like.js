@@ -1,4 +1,3 @@
-
 // Import necessary modules from Sequelize
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
@@ -16,41 +15,41 @@ const Post = require('./post');
 const Like = sequelize.define('Like', {
     // Define the 'like_id' field
     like_id: {
-        type: DataTypes.INTEGER, // The type of the like_id column
-        primaryKey: true, // This column is the primary key
-        autoIncrement: true, // The value of this column will auto-increment
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
     },
     // Define the 'user_id' field
     user_id: {
-        type: DataTypes.INTEGER, // Define the 'user_id' column as an integer
-        allowNull: false, // Indicates that this field cannot be null
+        type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
-            model: User, // Specifies the User model for the foreign key relationship
-            key: 'user_id', // The key in the User model that this foreign key references
+            model: User,
+            key: 'user_id',
         },
     },
     // Define the 'discussion_id' field
     post_id: {
-        type: DataTypes.INTEGER, // Specifies the data type as integer
-        allowNull: true, // Indicates that this field cannot be null
+        type: DataTypes.INTEGER,
+        allowNull: true,
         references: {
-            model: Post, // Specifies the Discussion model for the foreign key relationship
-            key: 'post_id', // The key in the Discussion model that this foreign key references
+            model: Post,
+            key: 'post_id',
         },
     },
     // Define the 'comment_id' field
     comment_id: {
-        type: DataTypes.INTEGER, // The type of the comment_id column
-        allowNull: true, // This column can be null (optional)
+        type: DataTypes.INTEGER,
+        allowNull: true,
         references: {
-            model: Comment, // This column references the Comment model
-            key: 'comment_id', // The primary key of the Comment model
+            model: Comment,
+            key: 'comment_id',
         },
     }
 }, {
     // Model options
-    timestamps: false, // Disable automatic timestamps (createdAt, updatedAt)
-    underscored: true, // Use snake_case for column names (like `like_id` instead of `likeId`)
+    timestamps: false,
+    underscored: true,
 });
 
 // Export the Like model

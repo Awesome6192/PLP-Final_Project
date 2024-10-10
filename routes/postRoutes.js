@@ -1,10 +1,10 @@
 // Import the necessary modules
-const express = require('express'); // Import the Express library
-const router = express.Router(); // Create a new router instance
-const postController = require('../controllers/postController'); // Import the postController to handle post-related actions
-const authMiddleware = require('../middleware/authMiddleware'); // Import middleware for authentication
-const multer = require('multer'); // Import multer
-const path = require('path'); // Import path
+const express = require('express');
+const router = express.Router();
+const postController = require('../controllers/postController');
+const authMiddleware = require('../middleware/authMiddleware');
+const multer = require('multer');
+const path = require('path');
 
 // Set up multer for file uploads
 const storage = multer.diskStorage({

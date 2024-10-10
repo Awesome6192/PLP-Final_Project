@@ -1,13 +1,13 @@
 // Import the necessary modules
-const express = require('express'); // Import the Express library
-const router = express.Router(); // Create a new router instance
+const express = require('express');
+const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
-const Like = require('../models/like'); // Import the Like model from the models directory
+const Like = require('../models/like');
 
 // Create a new like
 router.post('/:postId/like', async (req, res) => {
     try {
-        const user_id = getUserIdFromCookies(); // Retrieve user_id from cookies
+        const user_id = getUserIdFromCookies();
         const postId = req.params.postId;
 
         // Validate that user_id is found
@@ -18,7 +18,7 @@ router.post('/:postId/like', async (req, res) => {
         // Create a new like record in the database
         const newLike = await Like.create({
             user_id,
-            post_id: postId // Store post_id instead of discussion_id
+            post_id: postId
         });
 
         res.status(201).json(newLike);
@@ -67,7 +67,7 @@ router.get('/:like_id', async (req, res) => {
             res.status(404).json({ error: 'Like not found' }); 
         }
     } catch (error) {
-        console.error('Error fetching like:', error); // Log any errors to the console
+        console.error('Error fetching like:', error);
         // Respond with a 500 status code if an error occurs
         res.status(500).json({ error: 'Error fetching like' }); 
     }
@@ -94,7 +94,7 @@ router.put('/:like_id', async (req, res) => {
             res.status(404).json({ error: 'Like not found' }); 
         }
     } catch (error) {
-        console.error('Error updating like:', error); // Log any errors to the console
+        console.error('Error updating like:', error);
         // Respond with a 500 status code if an error occurs
         res.status(500).json({ error: 'Error updating like' }); 
     }
@@ -115,7 +115,7 @@ router.delete('/:like_id', async (req, res) => {
             res.status(404).json({ error: 'Like not found' }); 
         }
     } catch (error) {
-        console.error('Error deleting like:', error); // Log any errors to the console
+        console.error('Error deleting like:', error);
         // Respond with a 500 status code if an error occurs
         res.status(500).json({ error: 'Error deleting like' }); 
     }

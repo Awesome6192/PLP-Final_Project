@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Hamburger Menu JavaScript
-    const hamburgerMenu = document.querySelector('.hamburger-menu'); // Selects the hamburger menu element
-    const sidebar = document.querySelector('.sidebar'); // Selects the sidebar element
-    const containerSettings = document.querySelector('#container-settings'); // Selects the settings container
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const sidebar = document.querySelector('.sidebar');
+    const containerSettings = document.querySelector('#container-settings');
 
     // If the hamburger menu element exists, add a click event listener
     if (hamburgerMenu) {
@@ -15,12 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update Settings Form Handling
-    const settingsForm = document.querySelector('.settings-form'); // Selects the settings form
+    const settingsForm = document.querySelector('.settings-form');
 
     // If the settings form exists, add a submit event listener
     if (settingsForm) {
         settingsForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent the default form submission behavior
+            event.preventDefault();
 
             // Get form values
             const previousPassword = document.getElementById('previous-password').value;
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Validate if new passwords match
             if (newPassword !== confirmPassword) {
-                alert('New passwords do not match'); // Alert the user if passwords do not match
+                alert('New passwords do not match');
                 return; // Stop form submission
             }
 
@@ -53,13 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify(data) // Convert data to JSON format
+                    body: JSON.stringify(data)
                 });
 
                 // Check if the response is successful
                 if (response.ok) {
-                    alert('Settings updated successfully'); // Alert success message
-                    window.location.reload(); // Reload the page or redirect as needed
+                    alert('Settings updated successfully');
+                    window.location.reload();
                 } else {
                     // Parse the response JSON and display error message
                     const result = await response.json();
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Refresh Page Function
     function refreshPage() {
-        window.location.reload(); // Reloads the current page
+        window.location.reload();
     }
 
     // Add event listener to the home icon to refresh the page
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Logout Button Handling
-    const logoutButton = document.getElementById('logout-button'); // Ensure this exists in your HTML
+    const logoutButton = document.getElementById('logout-button');
 
     // If the logout button exists, add a click event listener
     if (logoutButton) {
@@ -94,14 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Send a request to log out the user
                 const response = await fetch('/api/user/logout', {
                     method: 'POST',
-                    credentials: 'include' // Ensure cookies are included with the request
+                    credentials: 'include'
                 });
 
                 // Check if the response is successful
                 if (response.ok) {
-                    window.location.href = '/login.html'; // Redirect to login page on successful logout
+                    window.location.href = '/login.html';
                 } else {
-                    alert('Error logging out'); // Display an error message if logout fails
+                    alert('Error logging out');
                 }
             } catch (error) {
                 // Log any errors and display an alert

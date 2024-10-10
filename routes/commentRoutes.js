@@ -1,15 +1,15 @@
 // Import the necessary modules
-const express = require('express'); // Import the Express library
-const router = express.Router(); // Create a new router instance
+const express = require('express');
+const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
-const Comment = require('../models/comment'); // Import the Comment model from the models directory
+const Comment = require('../models/comment');
 
 // Create a new comment
 router.post('/posts/:post_id/comments', authMiddleware, async (req, res) => {
-    console.log('Request Body:', req.body); // Log the incoming request body
+    console.log('Request Body:', req.body);
     try {
-        const { user_id, comment_text } = req.body;  // Extract user_id and comment_text from the request body
-        const postId = req.params.post_id;  // Get the post_id from the route params
+        const { user_id, comment_text } = req.body;
+        const postId = req.params.post_id;
 
         if (!user_id || !comment_text || !postId) {
             return res.status(400).json({ error: 'Missing required fields: user_id, comment_text, or post_id' });
@@ -22,7 +22,7 @@ router.post('/posts/:post_id/comments', authMiddleware, async (req, res) => {
             comment_text: comment_text
         });
 
-        res.status(201).json(newComment);  // Return the created comment
+        res.status(201).json(newComment);
     } catch (error) {
         console.error('Error creating comment:', error);
         res.status(500).json({ error: 'Error creating comment' });
@@ -37,10 +37,10 @@ router.get('/posts/:post_id/comments', authMiddleware, async (req, res) => {
         // Fetch all comments for this post
         const comments = await Comment.findAll({
             where: { post_id: postId },
-            order: [['created_at', 'DESC']]  // Order comments by most recent
+            order: [['created_at', 'DESC']]
         });
 
-        res.status(200).json(comments);  // Return the list of comments
+        res.status(200).json(comments);
     } catch (error) {
         console.error('Error fetching comments:', error);
         res.status(500).json({ error: 'Error fetching comments' });
@@ -60,8 +60,8 @@ router.get('/:comment_id', async (req, res) => {
             res.status(404).json({ error: 'Comment not found' }); 
         }
     } catch (error) {
-        console.error('Error fetching comment:', error); // Logging errors to the console
-        res.status(500).json({ error: 'Error fetching comment' }); // Responding with a 500 status code if fetching fails
+        console.error('Error fetching comment:', error);
+        res.status(500).json({ error: 'Error fetching comment' });
     }
 });
 
@@ -87,8 +87,8 @@ router.put('/:comment_id', async (req, res) => {
             res.status(404).json({ error: 'Comment not found' }); 
         }
     } catch (error) {
-        console.error('Error updating comment:', error); // Logging errors to the console
-        res.status(500).json({ error: 'Error updating comment' }); // Responding with a 500 status code if updating fails
+        console.error('Error updating comment:', error);
+        res.status(500).json({ error: 'Error updating comment' });
     }
 });
 
@@ -108,8 +108,8 @@ router.delete('/:comment_id', async (req, res) => {
             res.status(404).json({ error: 'Comment not found' }); 
         }
     } catch (error) {
-        console.error('Error deleting comment:', error); // Logging errors to the console
-        res.status(500).json({ error: 'Error deleting comment' }); // Responding with a 500 status code if deletion fails
+        console.error('Error deleting comment:', error);
+        res.status(500).json({ error: 'Error deleting comment' });
     }
 });
 

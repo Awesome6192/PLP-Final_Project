@@ -1,8 +1,8 @@
 // Import the necessary modules
-const express = require('express'); // Import the Express library for creating server routes
-const router = express.Router(); // Create a new router instance for defining routes
-const settingsController = require('../controllers/settingsController'); // Import the settingsController for handling settings-related logic
-const authMiddleware = require('../middleware/authMiddleware'); // Import middleware for authentication to protect routes
+const express = require('express');
+const router = express.Router();
+const settingsController = require('../controllers/settingsController');
+const authMiddleware = require('../middleware/authMiddleware');
 
 // Define routes
 // Route to get user settings; requires authentication

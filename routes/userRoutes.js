@@ -1,12 +1,12 @@
 // Import the necessary modules
-const express = require('express'); // Import the Express library
-const router = express.Router(); // Creating a new router instance
-const bcrypt = require('bcryptjs'); // Import bcrypt for hashing passwords
-const jwt = require('jsonwebtoken'); // Import jsonwebtoken for generating and verifying JWTs
-const { User } = require('../models/associations'); // Import the User model from the associations
-const authMiddleware = require('../middleware/authMiddleware'); // Import middleware for user authentication
-const { Op } = require('sequelize'); // Import Sequelize operators to build complex queries
-const { check, validationResult } = require('express-validator'); // Import express-validator for request validation
+const express = require('express');
+const router = express.Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { User } = require('../models/associations');
+const authMiddleware = require('../middleware/authMiddleware');
+const { Op } = require('sequelize');
+const { check, validationResult } = require('express-validator');
 
 // Middleware for validation
 // Define validation rules for user registration
@@ -28,9 +28,9 @@ const loginValidationRules = () => {
 
 // Middleware to validate the request based on defined rules
 const validate = (req, res, next) => {
-    const errors = validationResult(req); // Validate the request data
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() }); // Return validation errors if any
+        return res.status(400).json({ errors: errors.array() });
     }
     next(); // Proceed to the next middleware or route handler if validation passes
 };
@@ -51,7 +51,7 @@ router.post('/register', registerValidationRules(), validate, async (req, res) =
         });
 
         if (existingUser) {
-            return res.status(400).json({ errors: [{ msg: 'Email or Username already exists' }] }); // Return error if user exists
+            return res.status(400).json({ errors: [{ msg: 'Email or Username already exists' }] });
         }
 
         // Hash the password before storing it
@@ -64,10 +64,10 @@ router.post('/register', registerValidationRules(), validate, async (req, res) =
             password: hashedPassword
         });
 
-        res.status(201).json(newUser); // Respond with the newly created user
+        res.status(201).json(newUser);
     } catch (error) {
         console.error('Error registering new user:', error.message);
-        res.status(500).json({ errors: [{ msg: 'Internal Server Error' }] }); // Handle server error
+        res.status(500).json({ errors: [{ msg: 'Internal Server Error' }] });
     }
 });
 
@@ -158,26 +158,26 @@ router.get('/profile', authMiddleware, async (req, res) => {
         // Find the user by their ID from the token
         const user = await User.findByPk(req.user.user_id);
         if (!user) {
-            return res.status(404).json({ error: 'User not found' }); // Return error if user does not exist
+            return res.status(404).json({ error: 'User not found' });
         }
         res.json(user); // Respond with the user profile
     } catch (error) {
         console.error('Error fetching user profile:', error.message);
-        res.status(500).json({ error: 'Internal Server Error' }); // Handle server error
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
 // Update user profile
 router.put('/profile', [
     authMiddleware, // Ensure user is authenticated
-    check('email').optional().isEmail().withMessage('Invalid email address').normalizeEmail(), // Validate optional email
-    check('username').optional().isAlphanumeric().withMessage('Username must be alphanumeric').trim().escape() // Validate optional username
+    check('email').optional().isEmail().withMessage('Invalid email address').normalizeEmail(),
+    check('username').optional().isAlphanumeric().withMessage('Username must be alphanumeric').trim().escape()
 ], validate, async (req, res) => {
     try {
         // Find the user by their ID from the token
         const user = await User.findByPk(req.user.user_id);
         if (!user) {
-            return res.status(404).json({ error: 'User not found' }); // Return error if user does not exist
+            return res.status(404).json({ error: 'User not found' });
         }
 
         // Update user profile fields if provided
@@ -188,7 +188,7 @@ router.put('/profile', [
         res.json(user); // Respond with the updated user profile
     } catch (error) {
         console.error('Error updating user profile:', error.message);
-        res.status(500).json({ error: 'Internal Server Error' }); // Handle server error
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
@@ -197,7 +197,7 @@ router.get('/search', async (req, res) => {
     try {
         const { query } = req.query; // Get the search query from the request
         if (!query) {
-            return res.status(400).json({ error: 'Query parameter is required' }); // Return error if no query is provided
+            return res.status(400).json({ error: 'Query parameter is required' });
         }
 
         // Search users by username or email using the provided query
@@ -213,7 +213,7 @@ router.get('/search', async (req, res) => {
         res.json(users); // Respond with the search results
     } catch (error) {
         console.error('Error searching users:', error.message);
-        res.status(500).json({ error: 'Internal Server Error' }); // Handle server error
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 

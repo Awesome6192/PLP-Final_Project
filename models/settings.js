@@ -6,56 +6,56 @@ const sequelize = require('../config/database');
 const Settings = sequelize.define('Settings', {
     // Define the 'user_id' field
     user_id: {
-        type: DataTypes.INTEGER, // Define the 'user_id' column as an integer
-        allowNull: false, // Indicates that this field cannot be null
+        type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
-            model: 'Users', // Specifies the User model for the foreign key relationship
-            key: 'user_id' // The key in the User model that this foreign key references
+            model: 'Users',
+            key: 'user_id'
         }
     },
     // Define the 'username' field
     username: {
-        type: DataTypes.STRING, // Define the type of the 'username' column as a string
-        allowNull: true, // This column can be null, meaning the username is optional
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     // Define the 'email' field
     email: {
-        type: DataTypes.STRING, // Define the type of the 'email' column as a string
-        allowNull: true, // This column can be null, meaning the email is optional
+        type: DataTypes.STRING,
+        allowNull: true,
         validate: {
-            isEmail: true // Validate that the email follows the correct format
+            isEmail: true
         }
     },
     // Define the 'previousPassword' field
     previousPassword: {
-        type: DataTypes.STRING, // Define the type of the 'previousPassword' column as a string
-        allowNull: true, // This column can be null, meaning the previous password is optional
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     // Define the 'newPassword' field
     newPassword: {
-        type: DataTypes.STRING, // Define the type of the 'newPassword' column as a string
-        allowNull: true, // This column can be null, meaning the new password is optional
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     // Define the 'confirmPassword' field
     confirmPassword: {
-        type: DataTypes.STRING, // Define the type of the 'confirmPassword' column as a string
-        allowNull: true, // This column can be null, meaning the confirm password is optional
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     // Define the 'language' field
     language: {
-        type: DataTypes.STRING, // Define the type of the 'language' column as a string
-        allowNull: true, // This column can be null, meaning the language setting is optional
-        defaultValue: 'en', // Set the default value for the language column to 'en' (English)
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: 'en',
     }
 }, {
     // Model options
-    timestamps: true, // Automatically adds 'createdAt' and 'updatedAt' fields to track record creation and updates
-    underscored: true, // Uses snake_case for column names (e.g., 'settings_id' instead of 'settingsId')
+    timestamps: true,
+    underscored: true,
 });
 
 // Define associations
 Settings.associate = (models) => {
-    Settings.belongsTo(models.User, { foreignKey: 'user_id' }); // Establish a belongsTo association with the User model
+    Settings.belongsTo(models.User, { foreignKey: 'user_id' });
 };
 
 // Export the Settings model for use in other parts of the application

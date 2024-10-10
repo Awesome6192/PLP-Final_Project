@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('/api/user/profile', {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json' // Set the content type of the request
+                    'Content-Type': 'application/json'
                 },
-                credentials: 'include' // Include cookies with the request for authentication/session
+                credentials: 'include'
             });
 
             if (response.ok) {

@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get references to DOM elements
-    const submitPostButton = document.getElementById('submit-post'); // Button to submit a new post
-    const postContentTextarea = document.getElementById('post-content'); // Textarea for post content
-    const postList = document.getElementById('post-list'); // Element to display the list of posts
-    const imageUpload = document.getElementById('image-upload'); // File input for image upload
-    const videoUpload = document.getElementById('video-upload'); // File input for video upload
-    const hamburgerMenu = document.querySelector('.hamburger-menu'); // Hamburger menu for sidebar toggle
-    const sidebar = document.querySelector('.sidebar'); // Sidebar element
+    const submitPostButton = document.getElementById('submit-post');
+    const postContentTextarea = document.getElementById('post-content');
+    const postList = document.getElementById('post-list');
+    const imageUpload = document.getElementById('image-upload');
+    const videoUpload = document.getElementById('video-upload');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const sidebar = document.querySelector('.sidebar');
 
     // Toggle sidebar visibility when hamburger menu is clicked
     hamburgerMenu.addEventListener('click', () => {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('/api/posts', {
                 method: 'GET',
-                credentials: 'include' // Include cookies in the request
+                credentials: 'include'
             });
 
             if (!response.ok) {
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const data = await response.json();
-            console.log('Fetched posts:', data); // Log the data
+            console.log('Fetched posts:', data);
 
             if (data.posts && Array.isArray(data.posts)) {
                 displayPosts(data.posts);

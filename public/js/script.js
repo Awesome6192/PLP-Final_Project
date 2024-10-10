@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginForm) {
         // Add an event listener for the form's submit event
         loginForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent the default form submission behavior
+            event.preventDefault();
 
             // Retrieve the values from the login form inputs
             const emailOrUsername = document.getElementById('identifier').value;
@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch('/api/user/login', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json', // Indicate JSON content
-                        'Accept': 'application/json' // Accept JSON responses
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
-                    body: JSON.stringify({ identifier: emailOrUsername, password }) // Send form data as JSON
+                    body: JSON.stringify({ identifier: emailOrUsername, password })
                 });
 
                 if (response.ok) {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     // Handle errors if login fails
                     const data = await response.json();
-                    alert(data.errors[0]?.msg || 'Unknown error'); // Show the first error message or a generic error
+                    alert(data.errors[0]?.msg || 'Unknown error');
                 }
             } catch (error) {
                 // Handle network or unexpected errors
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (registerForm) {
         // Add an event listener for the form's submit event
         registerForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent the default form submission behavior
+            event.preventDefault();
 
             // Retrieve the values from the registration form inputs
             const email = document.getElementById('email').value;
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Check if the passwords match
             if (password !== confirmPassword) {
-                alert('Passwords do not match'); // Show an error if passwords do not match
+                alert('Passwords do not match');
                 return; // Stop form submission
             }
 
@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch('/api/user/register', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json', // Indicate JSON content
-                        'Accept': 'application/json' // Accept JSON responses
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
-                    body: JSON.stringify({ email, username, password }) // Send form data as JSON
+                    body: JSON.stringify({ email, username, password })
                 });
 
                 if (response.ok) {
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     // Handle errors if registration fails
                     const data = await response.json();
-                    alert(data.errors[0]?.msg || 'Unknown error'); // Show the first error message or a generic error
+                    alert(data.errors[0]?.msg || 'Unknown error');
                 }
             } catch (error) {
                 // Handle network or unexpected errors

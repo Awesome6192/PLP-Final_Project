@@ -24,7 +24,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 170px; /* Consistent with chat container */
+    width: 170px;
     height: 100vh;
     background: rgba(0, 0, 0, 0.8);
     display: flex;
@@ -64,7 +64,7 @@ body {
 }
 
 #container-settings {
-    background-color: rgb(10, 10, 10); /* Dark background */
+    background-color: rgb(10, 10, 10);
     width: 100%;
     max-width: 800px;
     padding: 20px;
@@ -95,7 +95,7 @@ body {
 .settings-form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Increased gap for better spacing */
+    gap: 15px;
 }
 
 .settings-form label {
@@ -134,7 +134,7 @@ body {
 
 /* Styles for the logout button */
 .logout-button {
-    background-color: #ff4c4c; /* Red color for logout button */
+    background-color: #ff4c4c;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -148,5 +148,5 @@ body {
 }
 
 .logout-button:hover {
-    background-color: #ff0000; /* Darker red on hover */
+    background-color: #ff0000;
 }
